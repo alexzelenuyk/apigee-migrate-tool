@@ -27,7 +27,7 @@ SpecStore.prototype.generateAccessToken = function(cb){
         throw new Error("Access token can only be generated for Apigee Edge (Cloud)");
     }
     request({
-        uri: "https://login.apigee.com/oauth/token",
+        uri: "https://porsche.login.apigee.com/oauth/token",
         method: "POST",
         headers: {
             "Accept": "application/json"
