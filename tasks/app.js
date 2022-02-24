@@ -70,7 +70,7 @@ module.exports = function(grunt) {
                             grunt.verbose.writeln("================== export Apps DONE()" );
 							done();
 						}
-					}).auth(userid, passwd, true);
+					}).auth(userid, passwd, true, apigee.from.token);
 				}
 				else {
 					if (dev_error )
@@ -78,7 +78,7 @@ module.exports = function(grunt) {
 					else
 						grunt.log.error(dev_body);
 				}
-			}).auth(userid, passwd, true);
+			}).auth(userid, passwd, true, apigee.from.token);
 			// End Developer details
 		}
 
@@ -127,7 +127,7 @@ module.exports = function(grunt) {
 						grunt.log.error(body);
 				}
 
-			}).auth(userid, passwd, true);
+			}).auth(userid, passwd, true, apigee.from.token);
 		}
 
 		iterateOverDevs(null, url, dumpApps);
@@ -231,7 +231,7 @@ module.exports = function(grunt) {
 	                                    callback();
 	                                }
 	                                // END of fix part1 issue #26
-	                            }.bind({dev: dev,status_url: status_url,app_name: app.name})).auth(userid, passwd, true);
+	                            }.bind({dev: dev,status_url: status_url,app_name: app.name})).auth(userid, passwd, true, apigee.from.token);
 	                        }
 	                        // START of fix part 2 issue #26
 	                        else {
@@ -270,8 +270,8 @@ module.exports = function(grunt) {
 	                                }
 	                                callback();
 	                            }
-	                            // END of fix part 3 issue #26					
-	                        }.bind({delete_url: delete_url})).auth(userid, passwd, true);
+	                            // END of fix part 3 issue #26
+	                        }.bind({delete_url: delete_url})).auth(userid, passwd, true, apigee.from.token);
 	                        // END of Key DELETE
 	                    } else {
 	                        grunt.verbose.writeln('ERROR Resp [' + response.statusCode + '] for create app  ' + this.app_url + ' -> ' + body);
@@ -281,7 +281,7 @@ module.exports = function(grunt) {
 	                    grunt.log.error("ERROR - from App URL : " + app_url);
 	                    grunt.log.error(body);
 	                }
-	            }.bind({app_url: app_url})).auth(userid, passwd, true);
+	            }.bind({app_url: app_url})).auth(userid, passwd, true, apigee.from.token);
 	    });
 	});
 
@@ -317,18 +317,18 @@ module.exports = function(grunt) {
 			grunt.verbose.writeln(app_del_url);
 			request.del(app_del_url,function(error, response, body){
 			   var status = 999;
-			   if (response)	
+			   if (response)
 			    status = response.statusCode;
 			  grunt.verbose.writeln('Resp [' + status + '] for delete app ' + this.app_del_url + ' -> ' + body);
 			  done_count++;
 			  if (error || status!=200)
-			  	grunt.verbose.error('ERROR Resp [' + status + '] for delete app ' + this.app_del_url + ' -> ' + body); 
+			  	grunt.verbose.error('ERROR Resp [' + status + '] for delete app ' + this.app_del_url + ' -> ' + body);
 			  if (done_count == files.length)
 			  {
 				grunt.log.ok('Processed ' + done_count + ' apps');
 				done();
 			  }
-			}.bind( {app_del_url: app_del_url}) ).auth(userid, passwd, true);	
+			}.bind( {app_del_url: app_del_url}) ).auth(userid, passwd, true, apigee.from.token);
 		});
 
 	});

@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 			{
 				grunt.log.error(error);
 			}
-		}).auth(userid, passwd, true);
+		}).auth(userid, passwd, true, apigee.from.token);
 		/*
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== Reports Timeout done" );
@@ -95,7 +95,7 @@ module.exports = function(grunt) {
 				done();
 			}
 
-			}.bind( {url: url}) ).auth(userid, passwd, true);
+			}.bind( {url: url}) ).auth(userid, passwd, true, apigee.from.token);
 		});
 	});
 
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
 				grunt.log.ok('Processed ' + done_count + ' reports');
 				done();
 			  }
-			}.bind( {del_url: del_url}) ).auth(userid, passwd, true);
+			}.bind( {del_url: del_url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});

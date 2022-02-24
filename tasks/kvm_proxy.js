@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 									{
 										grunt.log.error(error);
 									}
-								}.bind( {proxy: proxy})).auth(userid, passwd, true);
+								}.bind( {proxy: proxy})).auth(userid, passwd, true, apigee.from.token);
 						    	// End kvm details
 						    };					    
 						} 
@@ -66,14 +66,14 @@ module.exports = function(grunt) {
                             grunt.verbose.writeln("================== export Proxy KVMs DONE()" );
 							done();
 						}
-					}.bind( {proxy_url: proxy_url, proxy: proxy})).auth(userid, passwd, true);
+					}.bind( {proxy_url: proxy_url, proxy: proxy})).auth(userid, passwd, true, apigee.from.token);
 				}
 			}
 			else
 			{
 				grunt.log.error(error);
 			}
-		}).auth(userid, passwd, true);
+		}).auth(userid, passwd, true, apigee.from.token);
 		
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== Proxy KVMs Timeout done" );
@@ -148,7 +148,7 @@ module.exports = function(grunt) {
 					grunt.log.error(body);
 				}
 
-			}.bind( {kvm_url: kvm_url}) ).auth(userid, passwd, true);	
+			}.bind( {kvm_url: kvm_url}) ).auth(userid, passwd, true, apigee.from.token);	
 		});
 		//var done = this.async();
 	});
@@ -196,7 +196,7 @@ module.exports = function(grunt) {
 				grunt.log.ok('Processed ' + done_count + ' kvms');
 				done();
 			  }
-			}.bind( {kvm_del_url: kvm_del_url}) ).auth(userid, passwd, true);	
+			}.bind( {kvm_del_url: kvm_del_url}) ).auth(userid, passwd, true, apigee.from.token);	
 		});
 
 	});

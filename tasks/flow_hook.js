@@ -45,7 +45,7 @@ module.exports = function(grunt) {
 				}
 			}.bind({
 				cur_flow_hook_type: flow_hook_type[i]
-			})).auth(userid, passwd, true);
+			})).auth(userid, passwd, true, apigee.from.token);
 		}
 		/*
 		setTimeout(function() {
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
 						}
 					}.bind({
 						url: cur_url
-					})).auth(userid, passwd, true);
+					})).auth(userid, passwd, true, apigee.from.token);
 				} else {
 					// Delete shared flow if any configured
 					grunt.verbose.writeln("Removing any attached shared flow to " + cur_flow_hook + "\n");
@@ -115,7 +115,7 @@ module.exports = function(grunt) {
 						}
 					}.bind({
 						url: cur_url
-					})).auth(userid, passwd, true);
+					})).auth(userid, passwd, true, apigee.from.token);
 				}
 			}
 			var done = this.async();
@@ -147,7 +147,7 @@ module.exports = function(grunt) {
 				}
 			}.bind({
 				url: cur_url
-			})).auth(userid, passwd, true);
+			})).auth(userid, passwd, true, apigee.from.token);
 		}
 		var done = this.async();
 	});

@@ -49,7 +49,7 @@ module.exports = function(grunt) {
 							grunt.verbose.writeln("================== export ENV KVM DONE()" );
 							done();
 						}
-					}.bind( {env: env})).auth(userid, passwd, true);
+					}.bind( {env: env})).auth(userid, passwd, true, apigee.from.token);
 					// End kvm details
 				};
 			}
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
 			{
 				grunt.log.error(error);
 			}
-		}.bind( {env_url: env_url, env: env})).auth(userid, passwd, true);
+		}.bind( {env_url: env_url, env: env})).auth(userid, passwd, true, apigee.from.token);
 		/*
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== ENV KVMs Timeout done" );
@@ -138,7 +138,7 @@ module.exports = function(grunt) {
 						grunt.log.error(body);
 					}
 
-				}.bind( {kvm_url: kvm_url}) ).auth(userid, passwd, true);
+				}.bind( {kvm_url: kvm_url}) ).auth(userid, passwd, true, apigee.from.token);
 			}
 		});
 		//var done = this.async();
@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 					grunt.log.ok('Processed ' + done_count + ' kvms');
 					done();
 				  }
-				}.bind( {kvm_del_url: kvm_del_url}) ).auth(userid, passwd, true);
+				}.bind( {kvm_del_url: kvm_del_url}) ).auth(userid, passwd, true, apigee.from.token);
 			}
 		});
 

@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 						    var proxy_download_url = url + "/" + proxy_detail.name + "/revisions/" + max_rev + "?format=bundle";
 						    grunt.verbose.writeln ("\nFetching proxy bundle  : " + proxy_download_url);
 
-						    request(proxy_download_url).auth(userid, passwd, true)
+						    request(proxy_download_url).auth(userid, passwd, true, apigee.from.token)
 							  .pipe(fs.createWriteStream(filepath + "/" + proxy_detail.name + '.zip'))
 							  .on('close', function () {
 							    
@@ -64,7 +64,7 @@ module.exports = function(grunt) {
 							}
 							grunt.log.error(error);
 						}
-					}).auth(userid, passwd, true);
+					}).auth(userid, passwd, true, apigee.from.token);
 			    	// End proxy details
 			    }; 			    
 			} 
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
 			{
 				grunt.log.error(error);
 			}
-		}).auth(userid, passwd, true);
+		}).auth(userid, passwd, true, apigee.from.token);
 		/*
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== Proxies Timeout done" );
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
 					grunt.log.ok('Processed ' + done_count + ' proxies');
 					done();
 				}
-			}.bind( {url: url+name}) ).auth(userid, passwd, true);
+			}.bind( {url: url+name}) ).auth(userid, passwd, true, apigee.from.token);
 			var form = req.form();
 			form.append('file', fs.createReadStream(filepath));
 		});
@@ -166,7 +166,7 @@ module.exports = function(grunt) {
 					grunt.log.ok('Processed ' + done_count + ' proxies');
 					done();
 				}
-			}.bind( {app_del_url: app_del_url}) ).auth(userid, passwd, true);	
+			}.bind( {app_del_url: app_del_url}) ).auth(userid, passwd, true, apigee.from.token);	
 		});
 	});
 
@@ -205,7 +205,7 @@ module.exports = function(grunt) {
 								grunt.log.ok('Processed ' + done_count + ' proxies');
 								done();
 							}
-						}).auth(userid, passwd, true);
+						}).auth(userid, passwd, true, apigee.from.token);
 				    	// End proxy deploy
 				    }; 
 				    
@@ -214,7 +214,7 @@ module.exports = function(grunt) {
 				{
 					grunt.log.error(error);
 				}
-			}.bind( {proxy_url: proxy_url}) ).auth(userid, passwd, true);
+			}.bind( {proxy_url: proxy_url}) ).auth(userid, passwd, true, apigee.from.token);
 	});
 
 	grunt.registerTask('undeployProxies', 'UnDeploy revision 1 on all proxies for org ' + apigee.to.org + " [" + apigee.to.version + "]", function() {
@@ -251,7 +251,7 @@ module.exports = function(grunt) {
 								grunt.log.ok('Processed ' + done_count + ' proxies');
 								done();
 							}
-						}).auth(userid, passwd, true);
+						}).auth(userid, passwd, true, apigee.from.token);
 				    	// End proxy undeploy
 				    }; 
 				    
@@ -260,7 +260,7 @@ module.exports = function(grunt) {
 				{
 					grunt.log.error(error);
 				}
-			}).auth(userid, passwd, true);
+			}).auth(userid, passwd, true, apigee.from.token);
 	});
 
 };

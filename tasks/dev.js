@@ -44,7 +44,7 @@ module.exports = function(grunt) {
                     grunt.verbose.writeln("================== export Devs DONE()" );
 					done();
 				}
-			}.bind( {dev_url: dev_url}) ).auth(userid, passwd, true);
+			}.bind( {dev_url: dev_url}) ).auth(userid, passwd, true, apigee.from.token);
 		}
 
 
@@ -94,7 +94,7 @@ module.exports = function(grunt) {
 						grunt.log.error(body);
 				}
 
-			}).auth(userid, passwd, true);
+			}).auth(userid, passwd, true, apigee.from.token);
 		}
 
 		// get All developers
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
 				done();
 			}
 
-			}.bind( {url: url}) ).auth(userid, passwd, true);
+			}.bind( {url: url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});
@@ -192,7 +192,7 @@ module.exports = function(grunt) {
 				grunt.log.ok('Processed ' + done_count + ' developers');
 				done();
 			  }
-			}.bind( {del_url: del_url}) ).auth(userid, passwd, true);
+			}.bind( {del_url: del_url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});

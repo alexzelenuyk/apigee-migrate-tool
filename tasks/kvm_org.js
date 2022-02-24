@@ -54,7 +54,7 @@ module.exports = function(grunt) {
                                 grunt.verbose.writeln("================== export ORG KVM DONE()" );
 								done();
 							}
-						}).auth(userid, passwd, true);
+						}).auth(userid, passwd, true, apigee.from.token);
 				    	// End kvm details
 				    };
 			    }
@@ -63,7 +63,7 @@ module.exports = function(grunt) {
 			{
 				grunt.log.error(error);
 			}
-		}).auth(userid, passwd, true);
+		}).auth(userid, passwd, true, apigee.from.token);
 		/*
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== Org KVMs Timeout done" );
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
 				done();
 			}
 
-			}.bind( {url: url}) ).auth(userid, passwd, true);
+			}.bind( {url: url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
 				grunt.log.ok('Processed ' + done_count + ' kvms');
 				done();
 			  }
-			}.bind( {del_url: del_url}) ).auth(userid, passwd, true);
+			}.bind( {del_url: del_url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});

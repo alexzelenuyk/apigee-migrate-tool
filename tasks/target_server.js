@@ -58,14 +58,14 @@ module.exports = function(grunt) {
                 grunt.verbose.writeln("================== export " + APIGEE_ENTITY_PLURAL + " DONE()");
                 done();
               }
-            }).auth(userid, passwd, true);
+            }).auth(userid, passwd, true, apigee.from.token);
             // End target_server details
           };
         }
       } else {
         grunt.log.error(error);
       }
-    }).auth(userid, passwd, true);
+    }).auth(userid, passwd, true, apigee.from.token);
   });
 
 
@@ -114,7 +114,7 @@ module.exports = function(grunt) {
 
       }.bind({
         url: url
-      })).auth(userid, passwd, true);
+      })).auth(userid, passwd, true, apigee.from.token);
 
     });
   });
@@ -158,7 +158,7 @@ module.exports = function(grunt) {
         }
       }.bind({
         del_url: del_url
-      })).auth(userid, passwd, true);
+      })).auth(userid, passwd, true, apigee.from.token);
 
     });
   });

@@ -59,17 +59,17 @@ module.exports = function(grunt) {
 	                            grunt.verbose.writeln("================== export products DONE()" );
 								done();
 							}
-						}).auth(userid, passwd, true);
+						}).auth(userid, passwd, true, apigee.from.token);
 					}
 			    	// End product details
 			    };
-			    
-			} 
+
+			}
 			else
 			{
 				grunt.log.error(error);
 			}
-		}).auth(userid, passwd, true);
+		}).auth(userid, passwd, true, apigee.from.token);
 		/*
 		setTimeout(function() {
 		    grunt.verbose.writeln("================== Products Timeout done" );
@@ -98,19 +98,19 @@ module.exports = function(grunt) {
 
 		files.forEach(function(filepath) {
 			var content = grunt.file.read(filepath);
-			//grunt.verbose.writeln(content);	
+			//grunt.verbose.writeln(content);
 			request.post({
 			  headers: {'content-type' : 'application/json'},
 			  url:     url,
 			  body:    content
 			}, function(error, response, body){
 			  var status = 999;
-			  if (response)	
+			  if (response)
 				status = response.statusCode;
 			  grunt.verbose.writeln('Resp [' + status + '] for product creation ' + this.url + ' -> ' +body);
 			  if (error || status!=201)
-			  { 
-			  	grunt.verbose.error('ERROR Resp [' + status + '] for product creation ' + this.url + ' -> ' +body); 
+			  {
+			  	grunt.verbose.error('ERROR Resp [' + status + '] for product creation ' + this.url + ' -> ' +body);
 			  }
 			 done_count++;
 			if (done_count == files.length)
@@ -118,7 +118,7 @@ module.exports = function(grunt) {
 				grunt.log.ok('Processed ' + done_count + ' products');
 				done();
 			}
-			}.bind( {url: url}) ).auth(userid, passwd, true);
+			}.bind( {url: url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});
@@ -143,15 +143,15 @@ module.exports = function(grunt) {
 			var content = grunt.file.read(filepath);
 			var product = JSON.parse(content);
 			var del_url = url + product.name;
-			grunt.verbose.writeln(del_url);	
+			grunt.verbose.writeln(del_url);
 			request.del(del_url, function(error, response, body){
 			  var status = 999;
-			  if (response)	
+			  if (response)
 				status = response.statusCode;
 			  grunt.verbose.writeln('Resp [' + status + '] for product deletion ' + this.del_url + ' -> ' + body);
 			  if (error || status!=200)
-			  { 
-			  	grunt.verbose.error('ERROR Resp [' + status + '] for product deletion ' + this.del_url + ' -> ' + body); 
+			  {
+			  	grunt.verbose.error('ERROR Resp [' + status + '] for product deletion ' + this.del_url + ' -> ' + body);
 			  }
 				done_count++;
 				if (done_count == files.length)
@@ -159,7 +159,7 @@ module.exports = function(grunt) {
 					grunt.log.ok('Processed ' + done_count + ' products');
 					done();
 				}
-			}.bind( {del_url: del_url}) ).auth(userid, passwd, true);
+			}.bind( {del_url: del_url}) ).auth(userid, passwd, true, apigee.from.token);
 
 		});
 	});
